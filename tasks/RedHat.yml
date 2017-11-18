@@ -1,0 +1,8 @@
+- name: install java
+  yum:
+    name: "java-1.{{ JAVA_VERSION }}.0-openjdk-devel"
+    state: present
+- name: make sure java {{ JAVA_VERSION }} is the default JDK
+  alternatives:
+    name: java
+    path: "/usr/lib/jvm/jre-1.{{ JAVA_VERSION }}.0-openjdk/bin/java"

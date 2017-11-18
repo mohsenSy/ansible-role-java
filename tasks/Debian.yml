@@ -1,0 +1,17 @@
+- name: Add apt repository for java
+  apt_repository:
+    repo: ppa:openjdk-r/ppa
+    state: present
+    update_cache: true
+- name: install java
+  apt:
+    name: "{{ item }}"
+    state: present
+    cache_valid_time: 86400
+  with_items:
+    - "openjdk-{{ JAVA_VERSION }}-jre"
+    - "openjdk-{{ JAVA_VERSION }}-jdk"
+- name: make sure java {{ JAVA_VERSION }} is the default JDK
+  alternatives:
+    name: java
+    path: /usr/lib/jvm/java-{{ JAVA_VERSION }}-openjdk-amd64/jre/bin/java
