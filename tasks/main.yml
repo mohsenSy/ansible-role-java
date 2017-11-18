@@ -1,0 +1,3 @@
+---
+# tasks file for java
+- include_tasks: "java_{{ JAVA_VERSION }}.yml"
